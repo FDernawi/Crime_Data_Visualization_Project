@@ -1,18 +1,45 @@
 SELECT 
-    c.tract,
+    COALESCE(c.tract, t.tract) AS tract,
     c.offense,
     c.lat,
     c.long,
-    COALESCE(f.total_no, 0) AS female_pop,
-    COALESCE(m.total_no, 0) AS male_pop,
-    COALESCE(t.total_no, 0) AS total_pop,
-	COALESCE(f.total_hs, 0) AS female_pop,
-    COALESCE(m.total_hs, 0) AS male_pop,
-    COALESCE(t.total_hs, 0) AS total_pop,
-	COALESCE(f.total_col, 0) AS female_pop,
-    COALESCE(m.total_col, 0) AS male_pop,
-    COALESCE(t.total_col, 0) AS total_pop
+    t.total,
+    t.total_no,
+    t.total_hs,
+    t.total_col,
+    t.white,
+    t.white_no,
+    t.white_hs,
+    t.white_col,
+    t.black,
+    t.black_no,
+    t.black_hs,
+    t.black_col,
+    t.aian,
+    t.aian_no,
+    t.aian_hs,
+    t.aian_col,
+    t.asian,
+    t.asian_no,
+    t.asian_hs,
+    t.asian_col,
+    t.nhpi,
+    t.nhpi_no,
+    t.nhpi_hs,
+    t.nhpi_col,
+    t.other,
+    t.other_no,
+    t.other_hs,
+    t.other_col,
+    t.multi,
+    t.multi_no,
+    t.multi_hs,
+    t.multi_col,
+    t.hisp,
+    t.hisp_no,
+    t.hisp_hs,
+    t.hisp_col
 FROM crime_data c
-LEFT JOIN female_pop_data f ON c.tract = f.tract
-LEFT JOIN male_pop_data m ON c.tract = m.tract
-LEFT JOIN total_pop_data t ON c.tract = t.tract;
+FULL JOIN total_pop_data t 
+ON c.tract = t.tract
+ORDER BY COALESCE(c.tract, t.tract), c.offense;
