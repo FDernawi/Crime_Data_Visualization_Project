@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DC Census Tracts Map</title>
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    <!-- Custom CSS -->
+    <!-- <link rel="stylesheet" href="static/css/style.css" /> -->
+    
+    <style>
+        #map {
+            height: 100vh;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Washington DC Census Tracts</h1>
+    
+    <!-- Map Container -->
+    <div id="map"></div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <!-- D3 for fetching GeoJSON -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+
+    <!-- JS to Load and Display Map -->
+    <script src="static/js/tracts_map.js"></script>
+
+</body>
+</html>
