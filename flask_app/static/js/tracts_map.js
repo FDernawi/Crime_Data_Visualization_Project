@@ -21,7 +21,7 @@ d3.json("/static/Census_Tracts_in_2020.geojson").then(function(geoData) {
         data.forEach(d => {
             tractData[d.tract] = d;  // Store data by tract
         });
-
+        const originalCenter = map.getCenter();
         // Add GeoJSON layer
         L.geoJson(geoData, {
             style: function(feature) {
@@ -92,6 +92,10 @@ d3.json("/static/Census_Tracts_in_2020.geojson").then(function(geoData) {
                     console.log("Popup Content:", popupContent);  // Log the popup content
                     layer.bindPopup(popupContent).openPopup();
                 });
+                map.on('popupclose', () => {
+                    console.log('Popup closed. Recentering the map...');
+                    map.setView(originalCenter, map.getZoom());
+                  });
             }
         }).addTo(map);
     });

@@ -17,6 +17,8 @@ def index():
 @app.route("/api/tracts")
 def get_tracts():
     data = load_data()
+    data["tract"] = data["tract"].astype(str).str.zfill(6)
+    print(data)
     # Convert the data to JSON format (using records for row-based structure)
     return jsonify(data.to_dict(orient="records"))
 
